@@ -33,24 +33,16 @@ struct ContentView: View {
             Spacer()
             if tabIndex == 0 {
                 //                Home Tab
-                //                Hier kommt Justus View rein
                 NavigationView{
                     VStack {
-                        Image(systemName: "globe")
-                            .foregroundColor(.green)
-                            .scaleEffect(2)
-                            .rotationEffect(.degrees(15))
-                            .imageScale(.large)
-                            .padding([.top, .leading, .trailing])
-                        Text("Your events")
-                            .font(.largeTitle)
-                            .padding(.all)
-                        
-                        Image("image1")
+                            Text("Your events")
+                                .font(.largeTitle)
+                                .padding(.all)
+                          
+                        Image(systemName: "figure.socialdance")
                             .resizable()
                             .scaledToFit()
-                            .frame(width: 300, height: 300)
-                            .cornerRadius(CGFloat(150))
+                            .frame(width: 150)
                         
                         List{
                             ForEach(eventArray){ event in
@@ -136,12 +128,10 @@ struct ContentView: View {
                             .padding([.leading, .bottom, .trailing])
                         
                         
-                        Image("image3")
+                        Image(systemName: "gear")
                             .resizable()
                             .padding(.top)
-                            .scaledToFit()
                             .frame(width: 200, height: 200)
-                            .cornerRadius(CGFloat(150))
                         
                         Toggle("Darkmode", isOn: $darkMode)
                         Toggle("Notification", isOn: $darkMode1)
@@ -155,17 +145,7 @@ struct ContentView: View {
                 
                 NavigationView{
                     VStack{
-                        Image("image4")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 300, height: 300)
-                            .cornerRadius(200)
-
-                        Text("To create a new event\n press the plus below")
-                            .font(.largeTitle)
-                            .multilineTextAlignment(.center)
-                            .padding()
-                            .foregroundColor(.green)
+                        
                         NavigationLink(
                             destination: CreateEventView(
                                 state : CreateEventViewState(),
@@ -174,12 +154,17 @@ struct ContentView: View {
                             )
                             .navigationTitle("Create an event"),
                             label: {
-                                Image(systemName: "plus")
-                                    .padding()
-                                    .scaleEffect(2)
+                                VStack{
+                                    Image(systemName: "calendar.badge.plus")
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(width: 150)
+                                    Text("New event")
+                                        .scaleEffect(2)
+                                }
                             }
-                                 
                         )
+                        
                     }
                 }
             }

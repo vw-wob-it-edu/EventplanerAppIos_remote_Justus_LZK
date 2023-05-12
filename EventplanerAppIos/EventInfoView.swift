@@ -11,6 +11,7 @@ struct EventInfoView: View {
     @StateObject var state: CreateEventViewState
     @Binding var eventArray: [Event]
     @State var index:Int
+    let sice  = 30.0
     
     var body: some View {
         VStack{
@@ -25,6 +26,33 @@ struct EventInfoView: View {
                 Text("Min Age: \(eventArray [index].minAge)")
                 
             }
+            
+            Button(action: {
+                let activityVC = UIActivityViewController(activityItems: [
+                    "Name: \(eventArray[index].name)",
+                    "Date: \(eventArray[index].date)",
+                    "Description: \(eventArray[index].description)",
+                    "Location: \(eventArray[index].location)",
+                    "Contact: \(eventArray[index].contact)",
+                    "Costs: \(eventArray[index].costs)$",
+                    "Max participant: \(eventArray[index].maxParticipant)",
+                    "Min Age: \(eventArray[index].minAge)"
+                ], applicationActivities: nil)
+                UIApplication.shared.windows.first?.rootViewController?.present(activityVC, animated: true, completion: nil)
+            }) {
+                VStack{
+                    Image(systemName: "square.and.arrow.up")
+                        .resizable()
+                        .scaledToFit()
+                        .foregroundColor(.blue)
+                        .frame(width: sice, height: sice)
+                        .padding()
+                        .edgesIgnoringSafeArea(/*@START_MENU_TOKEN@*/.all/*@END_MENU_TOKEN@*/)
+                    Text("Share")
+                }
+                    
+            }
+
         }
     }
     
